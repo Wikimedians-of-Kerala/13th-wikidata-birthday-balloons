@@ -30,5 +30,5 @@ Have a bug or an issue with this template? [Open a new issue](https://github.com
 
 ## Copyright and License
 
-Code released under [GPL V3](https://github.com/Wikimedians-of-Kerala/13th-wikidata-birthday-balloons/main/LICENSE) license.
+Code released under [GPL V3](https://github.com/Wikimedians-of-Kerala/13th-wikidata-birthday-balloons?tab=GPL-3.0-1-ov-file) license.
 The logo pattern is derived from [Wikidata-logo-without-paddings.svg](https://commons.wikimedia.org/wiki/File:Wikidata-logo-without-paddings.svg).
