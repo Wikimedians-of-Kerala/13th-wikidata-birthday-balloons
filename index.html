@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎉 Wikidata 13th Birthday Party! 🎂</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0063BF 0%, #339966 50%, #990000 100%);
+      height: 100vh;
+      position: relative;
+    }
+    .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 30% 70%, rgba(57, 102, 102, 0.3), transparent 60%),
+                  radial-gradient(circle at 70% 30%, rgba(0, 99, 191, 0.2), transparent 50%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .title {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      color: #FFFFFF;
+      font-size: 3.5em;
+      font-weight: 900;
+      margin-top: 60px;
+      text-shadow: 3px 3px 12px rgba(0,0,0,0.5);
+      letter-spacing: 3px;
+    }
+    .subtitle {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      color: #FFD700;
+      font-size: 1.8em;
+      margin: 20px 0 30px 0;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+      font-weight: 600;
+    }
+
+    /* Wikidata Logo Center */
+    #wikidata-logo {
+      position: absolute;
+      top: 38%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 5;
+      width: 480px;
+      height: auto;
+      filter: drop-shadow(0 10px 40px rgba(0,0,0,0.4));
+      animation: pulse 3s ease-in-out infinite;
+      background:#ffffffba;
+      border-radius:30px;
+    }
+    @keyframes pulse {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.05);
+      }
+    }
+
+    /* Realistic Balloons Container */
+    #balloons-container {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      top: 0; left: 0;
+      z-index: 2;
+      overflow: hidden;
+    }
+    .balloon-wrapper {
+      position: absolute;
+      bottom: -200px;
+      transform-origin: center top;
+    }
+    @keyframes floatUpSway {
+      0% {
+        bottom: -200px;
+        opacity: 0;
+        transform: translateX(0) rotate(0deg);
+      }
+      10% {
+        opacity: 1;
+      }
+      25% {
+        transform: translateX(25px) rotate(4deg);
+      }
+      50% {
+        transform: translateX(0) rotate(0deg);
+      }
+      75% {
+        transform: translateX(-25px) rotate(-4deg);
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        bottom: 110vh;
+        opacity: 0;
+        transform: translateX(0) rotate(0deg);
+      }
+    }
+    .balloon-wrapper.animate {
+      animation: floatUpSway linear infinite;
+    }
+    .balloon-svg {
+      width: 80px;
+      height: 100px;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.3));
+    }
+    .balloon-string {
+      width: 2px;
+      height: 80px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(150,150,150,0.8));
+      margin: 0 auto;
+      transform-origin: top center;
+    }
+
+    /* Realistic Candles */
+    #candles-container {
+      position: absolute;
+      bottom: 220px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 18px;
+      z-index: 8;
+    }
+    .candle-holder {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .candle-body {
+      width: 24px;
+      height: 70px;
+      background: linear-gradient(to right, #E8E8E8 0%, #FFFFFF 50%, #D0D0D0 100%);
+      border-radius: 4px 4px 0 0;
+      position: relative;
+      box-shadow: inset -2px 0 4px rgba(0,0,0,0.2),
+                  inset 2px 0 4px rgba(255,255,255,0.4),
+                  0 4px 15px rgba(0,0,0,0.3);
+    }
+    .candle-body.blue {
+      background: linear-gradient(to right, #0054A6 0%, #0063BF 50%, #004A8F 100%);
+    }
+    .candle-body.green {
+      background: linear-gradient(to right, #2A8356 0%, #339966 50%, #247047 100%);
+    }
+    .candle-body.red {
+      background: linear-gradient(to right, #850000 0%, #990000 50%, #700000 100%);
+    }
+    .candle-body.yellow {
+      background: linear-gradient(to right, #E6C200 0%, #FFD700 50%, #CCB000 100%);
+    }
+    .candle-top {
+      position: absolute;
+      top: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 24px;
+      height: 8px;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.4), transparent);
+      border-radius: 50%;
+    }
+    .wick {
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 10px;
+      background: linear-gradient(to bottom, #2C1810, #1A0F08);
+      border-radius: 1px 1px 0 0;
+    }
+    .flame {
+      position: absolute;
+      top: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 28px;
+      background: radial-gradient(ellipse at center bottom,
+                  #FFD700 0%,
+                  #FFA500 40%,
+                  #FF6B00 70%,
+                  rgba(255, 69, 0, 0.5) 100%);
+      border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+      box-shadow: 0 0 20px #FFD700,
+                  0 0 40px rgba(255, 165, 0, 0.6),
+                  0 0 60px rgba(255, 107, 0, 0.4);
+      animation: flameFlicker 0.8s infinite alternate;
+    }
+    .flame::before {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 16px;
+      background: radial-gradient(ellipse at center,
+                  #FFED4E 0%,
+                  rgba(255, 237, 78, 0.8) 50%,
+                  transparent 100%);
+      border-radius: 50%;
+    }
+    .flame::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 12px;
+      background: radial-gradient(ellipse at center,
+                  rgba(255, 255, 255, 0.9) 0%,
+                  rgba(255, 237, 78, 0.6) 50%,
+                  transparent 100%);
+      border-radius: 50%;
+    }
+    @keyframes flameFlicker {
+      0%, 100% {
+        opacity: 1;
+        transform: translateX(-50%) scaleY(1) scaleX(1);
+      }
+      25% {
+        opacity: 0.85;
+        transform: translateX(-48%) scaleY(0.92) scaleX(1.05);
+      }
+      50% {
+        opacity: 0.95;
+        transform: translateX(-52%) scaleY(1.03) scaleX(0.97);
+      }
+      75% {
+        opacity: 0.9;
+        transform: translateX(-50%) scaleY(0.96) scaleX(1.02);
+      }
+    }
+    .wax-drip {
+      position: absolute;
+      bottom: -2px;
+      left: 4px;
+      width: 6px;
+      height: 8px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(230,230,230,0.8));
+      border-radius: 0 0 50% 50%;
+      opacity: 0.7;
+    }
+
+    /* Gifts */
+    #gifts-container {
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 40px;
+      z-index: 8;
+      align-items: center;
+    }
+    .gift-img {
+      width: 110px;
+      height: 110px;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5));
+      animation: bounce 2.5s ease-in-out infinite;
+    }
+    .gift-img:nth-child(2) { animation-delay: 0.4s; }
+    .gift-img:nth-child(3) { animation-delay: 0.8s; }
+    .gift-img:nth-child(4) { animation-delay: 1.2s; }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="title">🎉 Happy 13th Birthday, Wikidata! 🎂</div>
+  <div class="subtitle">Celebrating 13 Years of Open Knowledge</div>
+
+  <!-- Wikidata Logo in Center -->
+  <img id="wikidata-logo" src="https://upload.wikimedia.org/wikipedia/commons/6/66/Wikidata-logo-en.svg" alt="Wikidata Logo">
+
+  <div id="balloons-container"></div>
+  <div id="candles-container"></div>
+  <div id="gifts-container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Gift-dynamic-premium.png/250px-Gift-dynamic-premium.png" class="gift-img" alt="Wikidata Birthday Gift">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Gift-dynamic-gradient.png/250px-Gift-dynamic-gradient.png" class="gift-img" alt="Wikidata Birthday Gift">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Gift-dynamic-color.png/250px-Gift-dynamic-color.png" class="gift-img" alt="Wikidata Birthday Gift">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Gift_box_icon.png" class="gift-img" alt="Wikidata Birthday Gift">
+  </div>
+
+  <script>
+    // Wikimedia color palette
+    const BALLOON_COLORS = [
+      { fill: '#0063BF', highlight: '#3399FF', shadow: '#003D7A' },
+      { fill: '#339966', highlight: '#66CC99', shadow: '#1A5C3D' },
+      { fill: '#990000', highlight: '#CC3333', shadow: '#660000' },
+      { fill: '#FFD700', highlight: '#FFED4E', shadow: '#CCA400' }
+    ];
+
+    // Create realistic SVG balloon
+    function createBalloonSVG(colorScheme) {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 100 120');
+      svg.setAttribute('class', 'balloon-svg');
+
+      // Balloon body with gradient
+      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+      const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'radialGradient');
+      const gradientId = 'grad' + Math.random().toString(36).substr(2, 9);
+      gradient.setAttribute('id', gradientId);
+      gradient.setAttribute('cx', '35%');
+      gradient.setAttribute('cy', '35%');
+
+      const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+      stop1.setAttribute('offset', '0%');
+      stop1.setAttribute('style', `stop-color:${colorScheme.highlight};stop-opacity:1`);
+
+      const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+      stop2.setAttribute('offset', '50%');
+      stop2.setAttribute('style', `stop-color:${colorScheme.fill};stop-opacity:1`);
+
+      const stop3 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+      stop3.setAttribute('offset', '100%');
+      stop3.setAttribute('style', `stop-color:${colorScheme.shadow};stop-opacity:1`);
+
+      gradient.appendChild(stop1);
+      gradient.appendChild(stop2);
+      gradient.appendChild(stop3);
+      defs.appendChild(gradient);
+      svg.appendChild(defs);
+
+      // Main balloon shape
+      const balloon = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+      balloon.setAttribute('cx', '50');
+      balloon.setAttribute('cy', '50');
+      balloon.setAttribute('rx', '35');
+      balloon.setAttribute('ry', '45');
+      balloon.setAttribute('fill', `url(#${gradientId})`);
+      balloon.setAttribute('stroke', colorScheme.shadow);
+      balloon.setAttribute('stroke-width', '1.5');
+      svg.appendChild(balloon);
+
+      // Highlight shine
+      const shine = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+      shine.setAttribute('cx', '38');
+      shine.setAttribute('cy', '35');
+      shine.setAttribute('rx', '12');
+      shine.setAttribute('ry', '18');
+      shine.setAttribute('fill', 'rgba(255,255,255,0.5)');
+      svg.appendChild(shine);
+
+      // Balloon knot
+      const knot = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      knot.setAttribute('d', 'M 45 95 Q 50 100 55 95 L 50 98 Z');
+      knot.setAttribute('fill', colorScheme.shadow);
+      svg.appendChild(knot);
+
+      return svg;
+    }
+
+    // Create balloon with wrapper (string moves with balloon)
+    const balloonsContainer = document.getElementById('balloons-container');
+    function createBalloon() {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'balloon-wrapper animate';
+
+      const colorScheme = BALLOON_COLORS[Math.floor(Math.random() * BALLOON_COLORS.length)];
+      const balloonSVG = createBalloonSVG(colorScheme);
+
+      const string = document.createElement('div');
+      string.className = 'balloon-string';
+
+      wrapper.appendChild(balloonSVG);
+      wrapper.appendChild(string);
+
+      // Random positioning and timing
+      wrapper.style.left = Math.random() * 95 + '%';
+      wrapper.style.animationDuration = (12 + Math.random() * 8) + 's';
+      wrapper.style.animationDelay = Math.random() * 4 + 's';
+
+      balloonsContainer.appendChild(wrapper);
+
+      // Remove balloon after animation completes
+      const duration = parseFloat(wrapper.style.animationDuration) * 1000;
+      const delay = parseFloat(wrapper.style.animationDelay) * 1000;
+      setTimeout(() => wrapper.remove(), duration + delay + 2000);
+    }
+
+    // Generate balloons continuously
+    setInterval(createBalloon, 1200);
+    for (let i = 0; i < 12; i++) {
+      setTimeout(createBalloon, i * 400);
+    }
+
+    // Create 13 realistic candles with flames
+    const candlesContainer = document.getElementById('candles-container');
+    const candleColors = ['blue', 'green', 'red', 'yellow', 'blue', 'green', 'red', 'yellow', 'blue', 'green', 'red', 'yellow', 'blue'];
+    for (let i = 0; i < 13; i++) {
+      const holder = document.createElement('div');
+      holder.className = 'candle-holder';
+
+      const candle = document.createElement('div');
+      candle.className = `candle-body ${candleColors[i]}`;
+
+      const top = document.createElement('div');
+      top.className = 'candle-top';
+
+      const wick = document.createElement('div');
+      wick.className = 'wick';
+
+      const flame = document.createElement('div');
+      flame.className = 'flame';
+      flame.style.animationDelay = (Math.random() * 0.5) + 's';
+
+      const waxDrip = document.createElement('div');
+      waxDrip.className = 'wax-drip';
+      waxDrip.style.left = (Math.random() * 16 + 4) + 'px';
+
+      candle.appendChild(top);
+      candle.appendChild(wick);
+      candle.appendChild(flame);
+      candle.appendChild(waxDrip);
+      holder.appendChild(candle);
+      candlesContainer.appendChild(holder);
+    }
+  </script>
+</body>
+</html>
