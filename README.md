@@ -3,7 +3,7 @@ A balloons flyer for 13th Wikidata Birthday . This repository contains a sample 
 
 ## Preview
 
-**[View Live Preview](https://wikimedians-of-kerala.github.io/12th-wikidata-birthday-pop/)**
+**[View Live Preview](https://wikimedians-of-kerala.github.io/13th-wikidata-birthday-balloons/)**
 
 ## About
 
@@ -13,7 +13,7 @@ This animation was created as a birthday gift at [Wikidata's 13th birthday](http
 
 To begin using this template, choose one of the following options to get started:
 
-- Clone the repo: `git clone https://github.com/Wikimedians-of-Kerala/13th-wikidata-birthday-balloon`
+- Clone the repo: `git clone https://github.com/Wikimedians-of-Kerala/13th-wikidata-birthday-balloons`
 - [Fork, Clone, or Download on GitHub](https://github.com/Wikimedians-of-Kerala/13th-wikidata-birthday-balloon)
 
 ## Usage
